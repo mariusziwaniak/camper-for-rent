@@ -1,7 +1,5 @@
 plugins {
     id 'java'
-    // Pozwala na przygotowanie wykonywalnej aplikacji w plikach jar lub war.
-    // oraz uruchomienie aplikacji spring-boot'owej. Działa od Gradle ver. 6.8.
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springBootDependencyManagementVersion}"
 }
