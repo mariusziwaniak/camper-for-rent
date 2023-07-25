@@ -1,0 +1,158 @@
+@startuml
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+
+
+'left to right direction
+skinparam roundcorner 10
+skinparam linetype ortho
+skinparam shadowing false
+skinparam handwritten false
+skinparam class {
+    BackgroundColor white
+'    ArrowColor #2688d4
+    ArrowColor #444444
+    BorderColor #444444
+}
+
+
+table(address) {
+primary_key(address_id) : NOT NULL <<PK>>
+--
+column(country) :  NOT NULL
+column(city) : NOT NULL
+column(postal_code) : NOT NULL
+column(street) : NOT NULL
+}
+
+table(owner) {
+primary_key(owner_id) : NOT NULL <<PK>>
+foreign_key(address_id): NOT NULL <<FK>>
+--
+column(company) : NOT NULL UNIQUE
+column(nip) : NOT NULL UNIQUE
+column(name) :
+column(surname) :
+column(phone) : NOT NULL
+column(email) : NOT NULL UNIQUE
+}
+
+table(customer) {
+primary_key(customer_id) : NOT NULL <<PK>>
+foreign_key(address_id)): NOT NULL <<FK>>
+--
+column(name) : NOT NULL
+column(surname) : NOT NULL
+column(phone) : NOT NULL
+column(email) : NOT NULL UNIQUE
+}
+
+table(category) {
+primary_key(category_id) : NOT NULL <<PK>>
+--
+column(category_name) : NOT NULL
+}
+
+table(vehicle) {
+primary_key(vehicle_id) : NOT NULL <<PK>>
+foreign_key(category_id) : NOT NULL <<FK>>
+foreign_key(owner_id) : NOT NULL <<FK>>
+--
+column(brand) : NOT NULL
+column(model) : NOT NULL
+column(year) : NOT NULL
+}
+
+table(detail) {
+primary_key(detail_id) : NOT NULL <<PK>>
+--
+column(detail_name) : NOT NULL
+}
+
+table(vehicle_detail) {
+primary_key(vehicle_detail_id) : NOT NULL <<PK>>
+foreign_key(vehicle_id) : NOT NULL <<FK>>
+foreign_key(detail_id) : NOT NULL <<FK>>
+--
+column(description) : NOT NULL
+}
+
+table(exclusion) {
+primary_key(exclusion_id) : NOT NULL <<PK>>
+foreign_key(vehicle_id) : NOT NULL <<FK>>
+--
+column(start_date) : NOT NULL
+column(end_date) : NOT NULL
+}
+
+table(price) {
+primary_key(price_id) : NOT NULL <<PK>>
+foreign_key(vehicle_id) : NOT NULL <<FK>>
+--
+column(start_date) : NOT NULL
+column(end_date) : NOT NULL
+column(price) : NOT NULL
+}
+
+table(booking) {
+primary_key(booking_id) : NOT NULL <<PK>>
+foreign_key(customer_id) : NOT NULL <<FK>>
+foreign_key(vehicle_id) : NOT NULL <<FK>>
+--
+column(booking_date_time) : NOT NULL
+column(start_date) : NOT NULL
+column(end_date) : NOT NULL
+column(price) : NOT NULL
+column(status) : NOT NULL
+}
+
+table(invoice_type) {
+primary_key(invoice_type_id) : NOT NULL <<PK>>
+--
+column(invoice_type) : NOT NULL UNIQUE
+}
+
+table(payment_type) {
+primary_key(payment_type_id) : NOT NULL <<PK>>
+--
+column(payment_type) : NOT NULL UNIQUE
+}
+
+table(invoice) {
+primary_key(invoice_id) : NOT NULL <<PK>>
+foreign_key(invoice_type_id) : NOT NULL <<FK>>
+foreign_key(payment_type_id) : NOT NULL <<FK>>
+foreign_key(booking_id) : NOT NULL <<FK>>
+--
+column(invoice_number) : NOT NULL UNIQUE
+column(invoice_date_time) : NOT NULL
+column(amount) : NOT NULL
+}
+
+table(payment) {
+primary_key(payment_id) : NOT NULL <<PK>>
+foreign_key(invoice_id) : NOT NULL <<FK>>
+--
+column(payment_date_time) : NOT NULL
+column(amount) : NOT NULL
+}
+
+
+owner       ||--u|| address
+customer    ||--u|| address
+vehicle     }o--u|| category
+vehicle     }o--u|| owner
+vehicle_detail }o--r|| vehicle
+vehicle_detail }o--d|| detail
+exclusion   }o--u|| vehicle
+price       }o--u|| vehicle
+booking     }o--u|| customer
+booking     }o--l|| vehicle
+invoice     }o--u|| booking
+invoice     }o--|| invoice_type
+invoice     }o--|| payment_type
+payment     |o--l|| invoice
+
+@enduml

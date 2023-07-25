@@ -1,0 +1,12 @@
+@startuml
+
+left to right direction
+
+actor Owner
+
+Owner --> (1. create account)
+Owner --> (2. logging into app)
+Owner --> (3. insert vehicle)
+Owner --> (4. view history)
+
+@enduml
