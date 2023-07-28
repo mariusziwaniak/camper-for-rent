@@ -11,13 +11,69 @@
 </head>
 
 </body>
-<div class="container">
-    <div class="row mt-3">
-        <h1>Camper For Rent - greetings You!</h1>
-        <br>
-        <a href="camperForRent">Find the best camper for You</a>
+<div class="container" id="body">
+    <div class="container text-bg-dark" id="body-header">
+        <div class="row mt-3">
+            <h1>Camper For Rent - The Best platform for Your vacation!</h1>
+        </div>
+        <div class="row">
+            <div class="container text-bg-warning">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-3 text-bg-secondary">
+                            <br>
+                            <a href="camperForRent">Find the best camper for You</a>
+                        </div>
+                        <div class="col-sm-3 text-bg-success">
+                            <a th:href="@{/login}" class="btn btn-info" role="button">Login</a>
+                            <a th:href="@{/logout}" class="btn btn-info" role="button">Logout</a>
+                        </div>
+                        <div class="col-sm-2 text-bg-secondary">
+                            <a th:href="@{/customer/add}" class="btn btn-info" role="button">Sign in</a>
+                        </div>
+                        <div class="col-sm-2 text-bg-success">
+                            <a th:href="@{/owner}" class="btn btn-info" role="button">Rental compandkdfskdkdkdsfkdfskdfskdsfkdfsky</a>
+                        </div>
+                        <div class="col-sm-2 text-bg-secondary">
+                            <span>asladsldsadsadsa;ldsa;lsaf;lsa;lsac;a;sc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 text-bg-primary">zawartość komórki</div>
+        <div class="col-sm-4 text-bg-secondary">zawartość komórki</div>
+    </div>
+
+    <div class="container text-bg-success"  id="body-wrapper">
+        <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Camper A</div>
+            <div class="card-body">
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
+            </div>
+        </div>
+        <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Camper B</div>
+            <div class="card-body">
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-bg-secondary" id="body-footer">
+        <div class="row mt-3">
+            <p>Copyright MRQS 2023</p>
+        </div>
     </div>
 </div>
+
 </body>
 
 </html>

@@ -5,14 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-//@RequestMapping(HomeController.HOME)
 @AllArgsConstructor
-public class HomeController {
+public class OwnerController {
 
-    static final String HOME = "/";
+    static final String OWNER = "/owner";
 
-    @GetMapping(value = HOME)
+    @GetMapping(value = OWNER)
     public String homePage() {
-        return "home";
+        return "owner";
     }
 }
